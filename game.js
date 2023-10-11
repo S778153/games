@@ -4,13 +4,13 @@ const ground = document.querySelector(".ground");
 const ceiling = document.querySelector(".ceiling");
 const obstacles = document.querySelectorAll(".obstacle");
 
-let characterX = 50;
+let characterX = 150;
 let characterY = gameContainer.offsetHeight * 0.25;
 let characterVelocityX = 0;
 let characterVelocityY = 0;
 const gravity = 0.5;
 const jumpStrength = 10;
-const jumpCooldown = 300;
+const jumpCooldown = 180;
 
 const mincharacterY = gameContainer.offsetHeight * 0.25;
 const maxcharacterY = gameContainer.offsetHeight - character.offsetHeight;
@@ -39,7 +39,16 @@ setcharacterImage(true, false);
 window.addEventListener("keydown", function (e) {
     keys[e.key] = true;
 
-    if (e.key === "w"||e.key === "s"|| e.key == 'ArrowUp'|| e.key == 'ArrowDown' && canJump && !isJumping) {
+    if (e.key === "w" && canJump && !isJumping) {
+        jump();
+    }
+    if (e.key === "s" && canJump && !isJumping) {
+        jump();
+    }
+    if (e.key == 'ArrowUp' && canJump && !isJumping) {
+        jump();
+    }
+    if (e.key == 'ArrowDown' && canJump && !isJumping) {
         jump();
     }
 });
@@ -178,11 +187,11 @@ function moveObstacles() {
 
 
 setInterval(() => {
-    showObstacle(obstacles[0], gameContainer.offsetWidth, gameContainer.offsetHeight * 0.75 - 40, getRandomSpeed(), 'image/undercannon.png');
-    showObstacle(obstacles[1], gameContainer.offsetWidth, gameContainer.offsetHeight * 0.75 - 40, getRandomSpeed(), 'image/undercannon.png');
+    showObstacle(obstacles[0], gameContainer.offsetWidth, gameContainer.offsetHeight * 0.75 - 35, getRandomSpeed(), 'image/undercannon.png');
+    showObstacle(obstacles[1], gameContainer.offsetWidth, gameContainer.offsetHeight * 0.75 - 35, getRandomSpeed(), 'image/undercannon.png');
     showObstacle(obstacles[2], gameContainer.offsetWidth, 10, getRandomSpeed(), 'image/topcannon.png');
     showObstacle(obstacles[3], gameContainer.offsetWidth, 10, getRandomSpeed(), 'image/topcannon.png');
-    showObstacle(obstacles[4], gameContainer.offsetWidth, gameContainer.offsetHeight * 0.75 - 40, getRandomSpeed(), 'image/undercannon.png');
+    showObstacle(obstacles[4], gameContainer.offsetWidth, gameContainer.offsetHeight * 0.75 - 35, getRandomSpeed(), 'image/undercannon.png');
 }, 2000);
 
 const obstacle6 = document.createElement("div");
@@ -246,7 +255,7 @@ spawnObstacle(obstacle10, 'image/bullet.png');
 
 
 function resetcharacterAndObstacle(character, obstacle) {
-    characterX = 50;
+    characterX = 150;
     characterY = gameContainer.offsetHeight * 0.25;
     characterVelocityX = 0;
     characterVelocityY = 0;
